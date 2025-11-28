@@ -20,6 +20,7 @@ CREATE TABLE users (
     role VARCHAR(20) CHECK(role IN ('user', 'organizer')) DEFAULT 'user',
     phone VARCHAR(20),
     follow INT DEFAULT 0,
+    balance BIGINT DEFAULT 1000000000,
     verified BOOLEAN DEFAULT TRUE,
     image VARCHAR(100),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
