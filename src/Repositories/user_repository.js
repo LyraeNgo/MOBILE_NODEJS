@@ -12,10 +12,11 @@ export default class UsersRepository {
         full_name,
         email,
         role,
+        balance,  
         created_at,
         updated_at
       FROM users
-    `); 
+    `);
 
     return result.rows.map(
       (row) =>
@@ -25,6 +26,7 @@ export default class UsersRepository {
           email: row.email,
           password: undefined,
           role: row.role,
+          balance: row.balance,
           createdAt: row.created_at,
           updatedAt: row.updated_at,
         })

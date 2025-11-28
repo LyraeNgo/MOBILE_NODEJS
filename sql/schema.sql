@@ -180,6 +180,25 @@ CREATE TABLE event_tag_map (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+CREATE TABLE orders (
+    order_id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    user_id UUID REFERENCES users(user_id) ON DELETE CASCADE,
+    event_id UUID REFERENCES events(event_id) ON DELETE CASCADE,
+    total_amount DECIMAL(10,2) NOT NULL,
+    status VARCHAR(20) CHECK(status IN ('pending', 'completed', 'cancelled')) DEFAULT 'pending',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+CREATE TABLE order_items (
+    order_item_id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    order_id UUID REFERENCES orders(order_id) ON DELETE CASCADE,
+    seat_type_id UUID REFERENCES seat_types(seat_type_id) ON DELETE CASCADE,
+    quantity INT NOT NULL,
+    price DECIMAL(10,2) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
 
 
 /* ==========================================================
@@ -210,7 +229,7 @@ CREATE TABLE vouchers (
     times_used INT DEFAULT 0,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
+);  
 
 CREATE TABLE user_vouchers (
     user_id UUID REFERENCES users(user_id) ON DELETE CASCADE,
@@ -230,6 +249,7 @@ CREATE TABLE qr_codes (
     qr_image_path VARCHAR(255),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
 
 
 

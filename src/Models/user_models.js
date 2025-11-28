@@ -12,6 +12,7 @@ export default class User {
    * @param {number} [param0.follow] - defaults to 0
    * @param {boolean} [param0.verified] - defaults to true
    * @param {string} [param0.image]
+   * @param {bigint} [param0.balance]
    * @param {Date} [param0.createdAt]
    * @param {Date} [param0.updatedAt]
    */
@@ -25,6 +26,7 @@ export default class User {
     follow = 0,
     verified = true,
     image = null,
+    balance,
     createdAt = new Date(),
     updatedAt = new Date(),
   }) {
@@ -37,6 +39,7 @@ export default class User {
     this.follow = follow;
     this.verified = verified;
     this.image = image;
+    this.balance = balance;
     this.createdAt = createdAt;
     this.updatedAt = updatedAt;
   }

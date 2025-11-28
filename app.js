@@ -10,6 +10,8 @@ import ticketRoutes from "./src/Routes/ticket_route.js";
 import reviewRoutes from "./src/Routes/review_route.js";
 import mediaRoutes from "./src/Routes/media_route.js";
 import tagRoutes from "./src/Routes/tag_route.js";
+import orderRoutes from "./src/Routes/order_route.js";
+
 const app = express();
 
 // Middleware
@@ -26,6 +28,7 @@ app.use("/api/tickets", ticketRoutes);
 app.use("/api/reviews", reviewRoutes);
 app.use("/api/media", mediaRoutes);
 app.use("/api/tags", tagRoutes);
+app.use("/api/orders", orderRoutes);
 app.use("/", (req, res) => {
   console.log("API is running");
 
