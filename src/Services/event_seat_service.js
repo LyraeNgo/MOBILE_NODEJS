@@ -3,6 +3,7 @@ import {
   getSeatTypesByEventRepo,
   updateEventSeatTypeRepo,
   deleteSeatTypeFromEventRepo,
+  getSeatSummaryByEventRepo,
 } from "../Repositories/event_seat_repository.js";
 
 /**
@@ -43,7 +44,13 @@ export const serviceAssignSeatToEvent = async (eventId, seatDataArray) => {
  */
 export const serviceGetEventSeats = async (eventId) => {
   const data = await getSeatTypesByEventRepo(eventId);
-  return data;
+  const summary = await getSeatSummaryByEventRepo(eventId);
+
+  return {
+    data,
+    totalAvailableSeats: Number(summary.total_available_seats) || 0,
+    totalValue: Number(summary.total_value) || 0,
+  };
 };
 
 /**

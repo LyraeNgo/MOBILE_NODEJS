@@ -124,3 +124,18 @@ export const getSeatTypeByIdRepo = async (eventId, seatTypeId) => {
   const { rows } = await pool.query(query, [eventId, seatTypeId]);
   return rows.length ? new EventSeatType(rows[0]) : null;
 };
+
+/**
+ * Lấy tổng số ghế và tổng ghế còn lại của event
+ */
+export const getSeatSummaryByEventRepo = async (eventId) => {
+  const query = `
+    SELECT
+      SUM(available_seats) AS total_available_seats,
+      SUM(price * available_seats) AS total_value
+    FROM seat_types
+    WHERE event_id = $1
+  `;
+  const { rows } = await pool.query(query, [eventId]);
+  return rows[0];
+};
