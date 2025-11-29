@@ -23,7 +23,7 @@ app.use("/api/users", userRoutes);
 app.use("/api/inviters", inviterRoutes);
 app.use("/api/events", eventRoutes);
 app.use("/api/events", eventSeatRoutes);
-app.use("/api/events/", eventInviterRoutes);
+app.use("/api/events-inviters/", eventInviterRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/seats", seatRoutes);
 app.use("/api/tickets", ticketRoutes);
