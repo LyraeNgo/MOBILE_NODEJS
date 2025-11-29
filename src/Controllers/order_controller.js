@@ -6,7 +6,7 @@ import {
 
 export const createOrderController = async (req, res) => {
   try {
-    const { userId, eventId, items } = req.body;
+    const { userId, eventId, items, voucherCode } = req.body;
 
     if (!userId || !eventId || !Array.isArray(items) || !items.length) {
       return res
@@ -14,7 +14,12 @@ export const createOrderController = async (req, res) => {
         .json({ success: false, message: "Invalid request body" });
     }
 
-    const result = await serviceCreateOrder(userId, eventId, items);
+    const result = await serviceCreateOrder(
+      userId,
+      eventId,
+      items,
+      voucherCode
+    );
     return res
       .status(201)
       .json({ success: true, message: "Order created", data: result });

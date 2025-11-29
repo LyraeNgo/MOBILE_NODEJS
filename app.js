@@ -12,7 +12,7 @@ import mediaRoutes from "./src/Routes/media_route.js";
 import tagRoutes from "./src/Routes/tag_route.js";
 import orderRoutes from "./src/Routes/order_route.js";
 import eventInviterRoutes from "./src/Routes/event_inviter_route.js";
-
+import voucherRoutes from "./src/Routes/voucher_route.js";
 const app = express();
 
 // Middleware
@@ -31,6 +31,7 @@ app.use("/api/reviews", reviewRoutes);
 app.use("/api/media", mediaRoutes);
 app.use("/api/tags", tagRoutes);
 app.use("/api/orders", orderRoutes);
+app.use("/api/vouchers", voucherRoutes);
 app.use("/", (req, res) => {
   console.log("API is running");
 
