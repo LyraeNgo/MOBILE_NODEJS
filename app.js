@@ -11,6 +11,7 @@ import reviewRoutes from "./src/Routes/review_route.js";
 import mediaRoutes from "./src/Routes/media_route.js";
 import tagRoutes from "./src/Routes/tag_route.js";
 import orderRoutes from "./src/Routes/order_route.js";
+import eventInviterRoutes from "./src/Routes/event_inviter_route.js";
 
 const app = express();
 
@@ -22,6 +23,7 @@ app.use("/api/users", userRoutes);
 app.use("/api/inviters", inviterRoutes);
 app.use("/api/events", eventRoutes);
 app.use("/api/events", eventSeatRoutes);
+app.use("/api/events/", eventInviterRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/seats", seatRoutes);
 app.use("/api/tickets", ticketRoutes);
