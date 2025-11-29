@@ -29,4 +29,24 @@ export default class VoucherController {
       res.status(500).json({ success: false, message: error.message });
     }
   }
+  static async claimVoucher(req, res) {
+    const { userId } = req.params;
+    const { voucherCode } = req.body;
+    try {
+      const result = await VoucherService.claimVoucher(userId, voucherCode);
+      res.json({ success: true, message: "success", data: result });
+    } catch (error) {
+      res.status(400).json({ error: error.message });
+    }
+  }
+
+  static async getVouchersByUserIdController(req, res) {
+    const { userId } = req.params;
+    try {
+      const vouchers = await VoucherService.getVouchersByUserId(userId);
+      res.json({ success: true, message: "success", data: vouchers });
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+  }
 }

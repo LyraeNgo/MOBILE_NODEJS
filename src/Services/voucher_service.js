@@ -38,4 +38,13 @@ export default class VoucherService {
       discount: voucher.discountPercentage,
     };
   }
+
+  static async claimVoucher(userId, voucherCode) {
+    const result = await VoucherRepository.claimVoucher(userId, voucherCode);
+    return result;
+  }
+  static async getVouchersByUserId(userId) {
+    const vouchers = await VoucherRepository.getUserVouchers(userId);
+    return vouchers;
+  }
 }
